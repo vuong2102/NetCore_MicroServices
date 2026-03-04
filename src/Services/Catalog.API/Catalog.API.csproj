@@ -7,9 +7,12 @@
     <UserSecretsId>3cb70a2d-2c1e-43bf-b614-7a275b1d3711</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="9.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
     <PackageReference Include="Carter" Version="10.0.0" />
     <PackageReference Include="Mapster" Version="7.4.0" />
     <PackageReference Include="Marten" Version="8.17.0" />
@@ -18,10 +21,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\" />
+    <ProjectReference Include="..\..\NetCore_MicroServices.ServiceDefaults\NetCore_MicroServices.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\Basket.API\Basket.API.csproj" />
   </ItemGroup>
 
 </Project>

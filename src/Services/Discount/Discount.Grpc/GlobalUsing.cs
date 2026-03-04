@@ -1,0 +1,11 @@
+﻿global using Microsoft.AspNetCore.Builder;
+global using System;
+global using Microsoft.Extensions.Caching.Distributed;
+global using System.Text.Json;
+global using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+global using Discount.Grpc.Data;
+global using Discount.Grpc.Models;
+global using Grpc.Core;
+global using Microsoft.EntityFrameworkCore;
+global using Discount.Grpc.Services;
+global using Mapster;

@@ -8,7 +8,7 @@ namespace Catalog.API.Products.GetProductById
     public record GetProductByIdResult(Product Product);
 
     internal class GetProductByIdHandler
-        (IDocumentSession session, ILogger<GetProductByIdHandler> logger)
+        (IDocumentSession session)
         : IQueryHandler<GetProductByIdQuery, GetProductByIdResult>
     {
         public async Task<GetProductByIdResult> Handle(GetProductByIdQuery query, CancellationToken cancellationToken)
@@ -16,8 +16,7 @@ namespace Catalog.API.Products.GetProductById
             var product = await session.LoadAsync<Product>(query.Id, cancellationToken);
             if (product is null)
             {
-                logger.LogWarning("Product with Id {ProductId} not found.", query.Id);
-                throw new ProductNotFoundException($"Product with Id {query.Id} not found.");
+                throw new ProductNotFoundException(query.Id);
             }
             return new GetProductByIdResult(product);
         }

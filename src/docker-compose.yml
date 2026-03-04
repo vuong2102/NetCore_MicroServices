@@ -1,11 +1,41 @@
 services:
   catalogdb:
-    image: postgres
+    image: postgres:16
+
+  basketdb:
+    image: postgres:16
+
+  discountdb:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+
+  distributedcache:
+    image: redis:7
 
   catalog.api:
+    image: ${DOCKER_REGISTRY-}catalog.api
     build:
       context: .
       dockerfile: Services/Catalog.API/Dockerfile
 
+  basket.api:
+    image: ${DOCKER_REGISTRY-}basket.api
+    build:
+      context: .
+      dockerfile: Services/Basket.API/Dockerfile
+
+  discount.grpc:
+    image: ${DOCKER_REGISTRY-}discountgrpc
+    build:
+      context: .
+      dockerfile: Services/Discount/Discount.Grpc/Dockerfile
+
+  yarpapigateway:
+    image: ${DOCKER_REGISTRY-}yarpapigateway
+    build:
+      context: .
+      dockerfile: ApiGateways/YarpApiGateway/Dockerfile
+
 volumes:
   postgres_catalog:
+  postgres_basket:
+  discountdb_data:
