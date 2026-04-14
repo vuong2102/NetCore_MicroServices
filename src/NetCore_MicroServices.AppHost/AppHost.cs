@@ -20,4 +20,6 @@ builder.AddProject<Projects.Ordering_API>("ordering-api");
 
 builder.AddProject<Projects.YarnApiGateways>("yarnapigateways");
 
+builder.AddProject<Projects.Auth_API>("auth-api");
+
 builder.Build().Run();

@@ -16,9 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Services\Auth.API\Auth.API\Auth.Grpc.csproj" />
     <ProjectReference Include="..\Services\Basket.API\Basket.API.csproj" />
     <ProjectReference Include="..\Services\Catalog.API\Catalog.API.csproj" />
     <ProjectReference Include="..\Services\Discount\Discount.Grpc\Discount.Grpc.csproj" />
+    <ProjectReference Include="..\Services\Ordering\Ordering.API\Ordering.API.csproj" />
   </ItemGroup>
 
 </Project>

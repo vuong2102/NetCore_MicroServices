@@ -61,6 +61,10 @@ namespace BuildingBlocks.Exceptions.Handler
             {
                 problemDetails.Extensions.Add("ValidationErrors", validationException.Errors);
             }
+            if (exception is BadRequestException badRequestException && badRequestException.Details is not null)
+            {
+                problemDetails.Extensions.Add("details", badRequestException.Details);
+            }
 
             await context.Response.WriteAsJsonAsync(problemDetails, cancellationToken: cancellationToken);
             return true;

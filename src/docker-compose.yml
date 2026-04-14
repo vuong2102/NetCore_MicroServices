@@ -5,6 +5,9 @@ services:
   basketdb:
     image: postgres:16
 
+  authdb:
+    image: postgres:16
+
   discountdb:
     image: mcr.microsoft.com/mssql/server:2022-latest
 

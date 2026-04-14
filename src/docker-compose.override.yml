@@ -25,6 +25,19 @@ services:
     #   - postgres_basket:/var/lib/postgresql/data
     restart: always
 
+  authdb:
+    image: postgres:16
+    container_name: authdb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=21022002
+      - POSTGRES_DB=AuthDb
+    ports:
+      - "5434:5432" # HOST_PORT : CONTAINER_PORT (Cong 5433 tren may MAP vao cong 5432 trong container)
+    # volumes:
+    #   - postgres_basket:/var/lib/postgresql/data
+    restart: always
+
   discountdb:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: discountdb
@@ -75,6 +88,21 @@ services:
     ports:
       - "6001:8080"
       - "6061:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
+  auth.grpc:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Server=authdb,1433;Database=AuthDb;User Id=postgres;Password=21022002;Include Error Detail=true
+    depends_on:
+      - authdb
+    ports:
+      - "6005:8080"
+      - "6065:8081"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro

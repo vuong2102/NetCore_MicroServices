@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>b84d5027-a4d7-49e7-a3af-9fbcf34e167f</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\Auth.proto" GrpcServices="Server" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Carter" Version="10.0.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.64.0" />
+    <PackageReference Include="Mapster" Version="7.4.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.23.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks.csproj" />
+    <ProjectReference Include="..\..\..\NetCore_MicroServices.ServiceDefaults\NetCore_MicroServices.ServiceDefaults.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Auth\Authorization\CheckAccess\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Models\DTOs\" />
+  </ItemGroup>
+
+</Project>
